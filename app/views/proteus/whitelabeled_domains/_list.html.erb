@@ -1,0 +1,19 @@
+<div class="proteus-whitelabeled-domain-list">
+  <table>
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Enabled</th>
+        <th></th>
+    </thead>
+
+    <% whitelabeled_domains.each do |domain| %>
+      <%= render(
+        partial: "proteus/whitelabeled_domains/whitelabeled_domain",
+        locals: {
+          whitelabeled_domain: domain
+        }
+      ) %>
+    <% end %>
+  </table>
+</div>

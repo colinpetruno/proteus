@@ -1,0 +1,47 @@
+<div class="proteus-whitelabeled-domains-form">
+  <div>
+    <div class="inline">
+      <%= form_for(
+        [property.whitelabeled_domain, property],
+        path: form_path,
+        method: form_method,
+        html_options: { class: :inline }
+        ) do |f| %>
+        <div>
+          <%= f.label :key, value: "Stylesheet Name" %>
+
+          <% if property.persisted? %>
+            <div><%= property.key %></div>
+
+          <% else %>
+            <%= f.select(
+              :key,
+              options_for_select(
+                ::Proteus::ExistingStylesheets.application_options
+              )
+            ) %>
+          <% end %>
+          <%= f.hidden_field :value, value: true %>
+        </div>
+
+        <div>
+          <%= f.hidden_field :type %>
+          <% if !property.persisted? %>
+            <%= f.submit nil, class: "btn btn-info" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if property.persisted? %>
+        <div>
+          <%= button_to(
+            "Delete",
+            [property.whitelabeled_domain, property],
+            method: :delete,
+            class: "btn btn-danger"
+          ) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

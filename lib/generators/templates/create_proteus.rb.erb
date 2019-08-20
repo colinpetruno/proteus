@@ -1,0 +1,21 @@
+class CreateProteus < ActiveRecord::Migration<%= migration_version %>
+  def change
+    create_table :proteus_whitelabeled_domains do |t|
+      t.string :host, null: false
+      t.string :slug, null: false # stylesheet name
+      t.boolean :compile, null: false, default: false
+      t.boolean :enabled, null: false, default: false
+      t.timestamps
+    end
+    add_index :proteus_whitelabeled_domains, :host
+
+    create_table :proteus_properties do |t|
+      t.references :proteus_white_labeled_domain
+      t.string :type, null: false
+      t.string :key, null: false
+      t.string :value, null: false
+      t.timestamps
+    end
+    add_index :proteus_properties, :key
+  end
+end

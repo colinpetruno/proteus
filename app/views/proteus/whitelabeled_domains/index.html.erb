@@ -1,0 +1,16 @@
+<%= link_to(
+  "New Domain Whitelabel",
+  new_whitelabeled_domain_path,
+  class: "btn btn-info"
+) %>
+
+<% if @whitelabeled_domains.present? %>
+  <%= render(
+    partial: "proteus/whitelabeled_domains/list",
+    locals: {
+      whitelabeled_domains: @whitelabeled_domains
+    }
+  ) %>
+<% else %>
+  <%= render partial: "proteus/whitelabeled_domains/empty" %>
+<% end %>

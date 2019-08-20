@@ -1,0 +1,31 @@
+<div class="proteus-whitelabeled-domains-form">
+  <%= form_for(
+    [property.whitelabeled_domain, property],
+    path: form_path,
+    method: form_method,
+    html_options: { class: "inline" }
+  ) do |f| %>
+    <div class="inline">
+      <div>
+        <%= f.label :key, value: "Variable Name" %>
+        <%= f.text_field :key, class: "form-control" %>
+      </div>
+
+      <div>
+        <%= f.label :value %>
+        <%= f.text_field :value, class: "form-control" %>
+      </div>
+
+      <div>
+        <%= f.hidden_field :type %>
+        <%= f.submit nil, class: "btn btn-info" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if property.persisted? %>
+    <div>
+      <%= button_to("Delete", [property.whitelabeled_domain, property], method: :delete, class: "btn btn-danger") %>
+    </div>
+  <% end %>
+</div>

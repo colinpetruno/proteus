@@ -1,0 +1,11 @@
+<tr>
+  <td><%= whitelabeled_domain.host %></td>
+  <td><%= whitelabeled_domain.enabled? ? "Yes" : "No" %></td>
+  <td>
+    <%= link_to(
+      "Edit",
+      edit_whitelabeled_domain_path(whitelabeled_domain),
+      class: "btn btn-info"
+    ) %>
+  </td>
+</tr>

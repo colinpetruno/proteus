@@ -1,0 +1,83 @@
+.proteus-web-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.proteus-whitelabled-domains-form {
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  .options {
+    display: flex;
+    > div {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+  }
+
+  .proteus-variables {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      border: 1px solid #cecece;
+      display: flex;
+      flex-direction: column;
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-top: 100px;
+      padding: 15px;
+      border-radius: 5px;
+
+      > header {
+        margin-bottom: 25px;
+      }
+
+      > footer {
+        margin-top: 25px;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+.proteus-whitelabeled-domains-form {
+  .inline {
+    display: flex;
+
+    > form {
+      display: flex;
+      flex-grow: 1;
+    }
+
+    > div, > form > div {
+      display: flex;
+      flex-direction: column;
+      flex-basis: 1;
+      flex-grow: 1;
+      justify-content: center;
+      margin: 0 15px;
+
+      input[type=submit] {
+        margin-top: auto;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
