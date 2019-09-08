@@ -1,5 +1,21 @@
 module Proteus
   module Helpers
+    def proteus_property_for(var_name, default_val="")
+      var = proteus_variable_cache.find { |variable| variable.key == var_name }
+
+      if var.present?
+        var.value
+      else
+        default_val
+      end
+    end
+
+    def proteus_variable_cache
+      @_proteus_variable_cache ||= ::Proteus::Property.
+        where(proteus_whitelabeled_domains: { host: request.host }).
+        joins(:whitelabeled_domain).to_a
+    end
+
     def proteus_stylesheet_link_tag(name, opts={})
 
 
@@ -7,11 +23,10 @@ module Proteus
       # aren't modified in development and if so copy them over. We should
       # probably hook into the compile_assets_fallback option or something
 
-
-
       domain = WhitelabeledDomain.find_by(host: request.host)
 
       if domain.present?
+        StylesheetCopier.for(domain).copy
         whitelabel_stylesheet_name = "proteus_#{domain.slug}_#{name}"
         stylesheet_link_tag(whitelabel_stylesheet_name, opts)
       else

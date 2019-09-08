@@ -30,7 +30,6 @@ module Proteus
     attr_accessor :domain
 
     def copy_manifest(manifest_file_name)
-      puts "Copying Manifest: #{manifest_file_name}"
       original_manifest_path = stylesheet_path(manifest_file_name)
 
       if original_manifest_path.blank?
@@ -66,7 +65,9 @@ module Proteus
       Folders.create!(variable_directory)
 
       File.open(variable_file, "w") do |fo|
-        fo.puts "$black: #000000;"
+        domain.sass_properties.each do |property|
+          fo.puts "$#{property.key}: #{property.value};"
+        end
       end
     end
 

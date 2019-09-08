@@ -43,6 +43,13 @@ image_for(:property)
 # only .scss manifests & syntax supported
 # add gitignore lines 
 
+#### Add the following to your .gitignore file
+```
+proteus_variables/
+proteus_variables/**/*
+proteus_*
+```
+
 
 Add proteus stylesheets and vars directory into gitignore
 
@@ -91,7 +98,7 @@ Everyone interacting in the Proteus project’s codebases, issue trackers, chat 
    - create (DONE)
    - edit
    - delete
-   - setup variables
+   - setup variables (DONE)
 
 - add to hosts whitelist (Rails 6) (DONE)
 - before_filter for checking the domain
