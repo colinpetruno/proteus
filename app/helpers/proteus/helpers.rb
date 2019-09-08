@@ -1,7 +1,22 @@
 module Proteus
   module Helpers
     def proteus_stylesheet_link_tag(name, opts={})
-      stylesheet_link_tag(name, opts)
+
+
+      # TODO: we will need to inspect to ensure that the stylesheets and vars
+      # aren't modified in development and if so copy them over. We should
+      # probably hook into the compile_assets_fallback option or something
+
+
+
+      domain = WhitelabeledDomain.find_by(host: request.host)
+
+      if domain.present?
+        whitelabel_stylesheet_name = "proteus_#{domain.slug}_#{name}"
+        stylesheet_link_tag(whitelabel_stylesheet_name, opts)
+      else
+        stylesheet_link_tag(name, opts)
+      end
       # this method eventually gets into
       # path_to_stylesheet(source, path_options)
       # in order to return the full path to the asset
@@ -24,14 +39,14 @@ module Proteus
       #    source = compute_asset_path(source, options)
       #  end
     rescue Sprockets::Rails::Helper::AssetNotFound => error
-      domain = WhitelabeledDomain.where(host: request.host)
+
       # need to check if the domain is included in whitelabel domains based
       # upon the request
       if domain.present?
-        # here we need to do a lot of shit
+        StylesheetCopier.for(domain).copy
 
-        # sprockets = Sprockets::Rails::Task.new(Rails.application)
-        # get the link to the right stylesheet for now
+        whitelabel_stylesheet = "proteus_#{domain.slug}_#{name}"
+        stylesheet_link_tag(name, opts)
       else
         raise error
       end

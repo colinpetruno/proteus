@@ -10,12 +10,12 @@ module Proteus
 
     def find_all
       Rails.application.config.assets.paths.map do |path|
-        Dir.glob("#{path}/*.{css,scss,sass}")
+        Dir.glob("#{path}/*.{scss}")
       end.flatten
     end
 
     def find_application
-      Dir.glob("#{stylesheet_directory.to_s}/*.{css,scss,sass}")
+      Dir.glob("#{stylesheet_directory.to_s}/*.{scss}")
     end
 
     def application_options

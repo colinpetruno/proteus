@@ -39,6 +39,13 @@ whitelabeled_link_to
 background_color_for(:propery)
 image_for(:property)
 
+# avoid import loops
+# only .scss manifests & syntax supported
+# add gitignore lines 
+
+
+Add proteus stylesheets and vars directory into gitignore
+
 # whitelabeled_domain
 #   domain_name -> string
 #   slug -> unique indexed string
@@ -120,3 +127,20 @@ need to find a way to add a new domain and add to the apps in memory config
 # config.hosts << "app.getmagnexus.local" 
 
 # loading something live in production
+# compilation flag 
+# config.assets.compile = true
+
+
+# the below line outputs the url path to the asset and not the actual file
+# path
+# source = compute_asset_path("get_magnexus.css", { debug: true, unknown_asset_fallback: true })
+
+
+# TODO: Items
+# proteus:cleanup rake task -> delete all proteus files
+
+# improved asset compilation... this one will be hard but done right it could
+# work quite well. If we can get the original manifest and the variables then
+# we can change the values so they get output into the stylesheet. At that 
+# point we can replace the placeholder values for each final stylesheet. 
+# biggest problems will be digests and such. 
