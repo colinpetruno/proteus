@@ -50,6 +50,20 @@
   }
 }
 
+.proteus-domain-settings {
+  border: 1px solid #cecece;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 15px;
+  border-radius: 5px;
+
+  > header {
+    margin-bottom: 25px;
+  }
+}
+
 .proteus-whitelabeled-domains-form {
   .inline {
     display: flex;

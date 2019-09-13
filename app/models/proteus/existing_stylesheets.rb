@@ -20,8 +20,14 @@ module Proteus
 
     def application_options
       find_application.map do |file|
-        File.basename(file)
-      end
+        basename = File.basename(file)
+
+        if basename.include?("proteus_")
+          nil
+        else
+          basename
+        end
+      end.compact
     end
 
     private

@@ -1,17 +1,17 @@
 # Proteus
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/proteus`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Proteus is an opinionated whitelabel gem intended to work without any need of
+developer interaction after the initial setup. Proteus works by creating new
+Sass variable files and recompiles a new stylesheet for each whitelabeled
+domain. This is fully managed via a backend web interface and any 
+misconfiguration has the ability to fall back to the applications default
+settings.
 
 Only supports ActiveRecord for now
 
 ## Installation
 
 Add this line to your application's Gemfile:
-
-Add the configuration intializer -> todo make this a generator that copies
-automatically with defaults
 
 ```ruby
 gem 'proteus'
@@ -25,9 +25,16 @@ Or install it yourself as:
 
     $ gem install proteus
 
+
+Create the schema migrations
+    $ rails generate proteus:install
+
+Migrate
+    $ rails db:migrate
+
 ## Usage
 
-Proteus needs to be able to server many domains. The key change to the app is
+Proteus needs to be able to serve many domains. The key change to the app is
 how stylesheet and assets are hooked into the app.
 
 instead of stylesheet_link_to we will need to make a 

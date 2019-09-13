@@ -1,42 +1,52 @@
 <div class="proteus-whitelabled-domains-form">
-  <%= form_for whitelabeled_domain do |f| %>
-    <div class="form-group">
-      <%= f.label :host %>
-      <%= f.text_field :host, class: "form-control" %>
-      <small class="form-text text-muted">
-        The domain you want to whitelabel.
+  <div class="proteus-domain-settings">
+    <header>
+      <h3>Domain Settings</h3>
+      <small>
+        Configure the general domain settings here.
       </small>
-    </div>
-    <div class="form-group">
-      <%= f.label :slug %>
-      <%= f.text_field :slug, class: "form-control" %>
-      <small class="form-text text-muted">
-        This will become the custom stylesheet name. Use only letters and
-        underscores.
-      </small>
-    </div>
-
-    <div class="options">
+    </header>
+    <%= form_for whitelabeled_domain do |f| %>
       <div class="form-group">
-        <%= f.label :compile %>
-        <%= f.check_box :compile, class: "form-control" %>
+        <%= f.label :host %>
+        <%= f.text_field :host, class: "form-control" %>
         <small class="form-text text-muted">
-          Enable a custom stylesheet for this domain. This will add to compilation
-          times.
+          The domain you want to whitelabel.
         </small>
       </div>
       <div class="form-group">
-        <%= f.label :enabled %>
-        <%= f.check_box :enabled, class: "form-control" %>
+        <%= f.label :slug %>
+        <%= f.text_field :slug, class: "form-control" %>
         <small class="form-text text-muted">
-          Disable / Enable the domain. If disabled it will raise a 404.
+          This will become the custom stylesheet name. Use only letters and
+          underscores.
         </small>
       </div>
-    </div>
 
-    <%= f.submit nil, class: "btn btn-primary" %>
-    <%= link_to "Back", whitelabeled_domains_path, class: "btn btn-link" %>
-  <% end %>
+      <div class="options">
+        <!--
+        <div class="form-group">
+          <%= f.label :compile %>
+          <%= f.check_box :compile, class: "form-control" %>
+          <small class="form-text text-muted">
+            Enable a custom stylesheet for this domain. This will add to compilation
+            times.
+          </small>
+        </div>
+        -->
+        <div class="form-group">
+          <%= f.label :enabled %>
+          <%= f.check_box :enabled, class: "form-control" %>
+          <small class="form-text text-muted">
+            Disable / Enable the domain. If disabled it will raise a 404.
+          </small>
+        </div>
+      </div>
+
+      <%= f.submit nil, class: "btn btn-primary" %>
+      <%= link_to "Back", whitelabeled_domains_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
 
   <div class="proteus-variables">
     <div class="proteus-associated-stylesheets">

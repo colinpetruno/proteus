@@ -11,7 +11,7 @@ module Proteus
       desc "Add the migrations for Porteus"
 
       def copy_migrations
-        warn "Creating Migrations for Proteus Whitelabeling 4"
+        warn "Creating Migrations for Proteus Whitelabeling"
         migration_template(
           "create_proteus.rb.erb",
           "db/migrate/create_proteus.rb",
