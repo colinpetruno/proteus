@@ -6,7 +6,8 @@
         path: form_path,
         method: form_method,
         html_options: { class: :inline }
-        ) do |f| %>
+      ) do |f| %>
+        <%= f.hidden_field :id %>
         <div>
           <%= f.label :key, value: "Stylesheet Name" %>
 

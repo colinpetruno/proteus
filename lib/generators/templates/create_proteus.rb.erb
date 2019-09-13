@@ -3,6 +3,7 @@ class CreateProteus < ActiveRecord::Migration<%= migration_version %>
     create_table :proteus_whitelabeled_domains do |t|
       t.string :host, null: false
       t.string :slug, null: false # stylesheet name
+      t.string :root_path
       t.boolean :compile, null: false, default: false
       t.boolean :enabled, null: false, default: false
       t.timestamps

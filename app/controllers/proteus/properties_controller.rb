@@ -30,7 +30,7 @@ module Proteus
     private
 
     def property_params
-      params.require(:property).permit(:type, :key, :value)
+      params.require(:property).permit(:id, :type, :key, :value)
     end
   end
 end

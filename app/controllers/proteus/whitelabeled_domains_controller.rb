@@ -22,12 +22,22 @@ module Proteus
       end
     end
 
+    def update
+      @whitelabeled_domain = WhitelabeledDomain.find(params[:id])
+
+      if @whitelabeled_domain.update(whitelabeled_domain_params)
+        redirect_to edit_whitelabeled_domain_path(@whitelabeled_domain)
+      else
+        render :edite
+      end
+    end
+
     private
 
     def whitelabeled_domain_params
       params.
         require(:whitelabeled_domain).
-        permit(:host, :slug, :compile, :enabled)
+        permit(:host, :slug, :compile, :enabled, :root_path)
     end
   end
 end
