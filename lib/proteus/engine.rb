@@ -14,6 +14,7 @@ module Proteus
     initializer "proteus_web.setup_hosts" do |app|
       begin
         domains = WhitelabeledDomain.all
+        domains.map(&:id)
       rescue StandardError => error
         domains = []
       end
