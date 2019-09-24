@@ -12,10 +12,9 @@ module Proteus
     end
 
     initializer "proteus_web.setup_hosts" do |app|
-      begin
+      if ActiveRecord::Base.connection.data_source_exists?("proteus_whitelabeled_domains")
         domains = WhitelabeledDomain.all
-        domains.map(&:id)
-      rescue StandardError => error
+      else
         domains = []
       end
 

@@ -1,6 +1,7 @@
 module Proteus
   class Property < ActiveRecord::Base
-    if Proteus.configuration.encryption_engine&.to_s&.downcase == "portunus"
+    if Proteus.configuration.encryption_engine&.to_s&.downcase == "portunus" &&
+        ActiveRecord::Base.connection.data_source_exists?("proteus_whitelabeled_domains")
       include Encryptable
       encrypted_fields :value
     end
