@@ -17,11 +17,11 @@ class CreateProteus < ActiveRecord::Migration<%= migration_version %>
 
       <%# This field is able to be encrypted to retain secrets %>
       <% if encryption_engine.downcase == "portunus" %>
-        t.string :value, null: false
-        t.id :portunus_data_encryption_key_id, null: false
-        t.datetime :dek_last_rotated
+      t.string :value, null: false
+      t.id :portunus_data_encryption_key_id, null: false
+      t.datetime :dek_last_rotated
       <% else %>
-        t.string :value, null: false
+      t.string :value, null: false
       <% end %>
 
       t.timestamps

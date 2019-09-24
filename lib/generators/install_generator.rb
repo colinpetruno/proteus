@@ -17,13 +17,14 @@ module Proteus
         migration_template(
           "create_proteus.rb.erb",
           "db/migrate/create_proteus.rb",
-          migration_version: migration_version
+          migration_version: migration_version,
+          encryption_engine: options["encryption_engine"]
         )
       end
 
-       def migration_version
-         "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
-       end
+      def migration_version
+        "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
+      end
     end
   end
 end
