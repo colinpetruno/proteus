@@ -12,7 +12,13 @@ module Proteus
     end
 
     initializer "proteus_web.setup_hosts" do |app|
-      WhitelabeledDomain.all.each do |domain|
+      begin
+        domains = WhitelabeledDomain.all
+      rescue StandardError => error
+        domains = []
+      end
+
+      domains.each do |domain|
         # Ensure latest manifest files before compilation
         StylesheetCopier.for(domain).copy
 
