@@ -13,7 +13,10 @@ module Proteus
 
     initializer "proteus_web.setup_hosts" do |app|
       WhitelabeledDomain.all.each do |domain|
-        # add the host to the whitelabeled host list for rails 6. The setting
+        # Ensure latest manifest files before compilation
+        StylesheetCopier.for(domain).copy
+
+        # Add the host to the whitelabeled host list for rails 6. The setting
         # is disabled when nil, so we will want to keep that blank if it is
         # already blank
         if app.config.respond_to?(:hosts) && !app.config.hosts.nil?
@@ -31,8 +34,6 @@ module Proteus
         end
       end
     end
-
-    # self.precompiled_asset_checker = -> logical_path { app.asset_precompiled? logical_path }
 
     initializer "proteus.view_helpers" do
       ActionView::Base.send :include, Proteus::Helpers

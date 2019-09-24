@@ -14,7 +14,16 @@ class CreateProteus < ActiveRecord::Migration<%= migration_version %>
       t.references :proteus_white_labeled_domain
       t.string :type, null: false
       t.string :key, null: false
-      t.string :value, null: false
+
+      <%# This field is able to be encrypted to retain secrets %>
+      <% if encryption_engine.downcase == "portunus" %>
+        t.string :value, null: false
+        t.id :portunus_data_encryption_key_id, null: false
+        t.datetime :dek_last_rotated
+      <% else %>
+        t.string :value, null: false
+      <% end %>
+
       t.timestamps
     end
     add_index :proteus_properties, :key

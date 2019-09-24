@@ -5,12 +5,14 @@ require "rails/generators/active_record/migration"
 module Proteus
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      # include Rails::Generators::Migration
       include ActiveRecord::Generators::Migration
+      argument :encryption_engine, type: :string, default: "none"
+
       source_root File.expand_path("templates", __dir__)
       desc "Add the migrations for Porteus"
 
       def copy_migrations
+        # options["encryption_engine"]
         warn "Creating Migrations for Proteus Whitelabeling"
         migration_template(
           "create_proteus.rb.erb",
