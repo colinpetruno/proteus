@@ -14,7 +14,7 @@ module Proteus
   end
 
   def self.configure
-    self.configuration ||= ::Proteus::Configuration.new
+    self.configuration = @@configuration || ::Proteus::Configuration.new
     yield(configuration)
   end
 
