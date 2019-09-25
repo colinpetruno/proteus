@@ -9,14 +9,10 @@ require "generators/install_generator.rb"
 module Proteus
   class Error < StandardError; end
 
-  class << self
-    attr_writer :configuration
-  end
-
   def self.configure
-    @@configuration ||= nil # need this to force initialization
-    self.configuration = @@configuration || ::Proteus::Configuration.new
-    yield(configuration)
+    @@configuration ||= ::Proteus::Configuration.new
+
+    yield(@@configuration)
   end
 
   def self.configuration
