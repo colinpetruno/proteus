@@ -14,6 +14,7 @@ module Proteus
   end
 
   def self.configure
+    @@configuration ||= nil # need this to force initialization
     self.configuration = @@configuration || ::Proteus::Configuration.new
     yield(configuration)
   end
