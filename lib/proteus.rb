@@ -10,12 +10,16 @@ module Proteus
   class Error < StandardError; end
 
   class << self
-    attr_accessor :configuration
+    attr_writer :configuration
   end
 
   def self.configure
     self.configuration ||= ::Proteus::Configuration.new
     yield(configuration)
+  end
+
+  def self.configuration
+    @@configuration ||= self.configure
   end
 
   def self.table_name_prefix
