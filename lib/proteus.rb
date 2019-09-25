@@ -16,7 +16,7 @@ module Proteus
   end
 
   def self.configuration
-    @@configuration ||= self.configure
+    @@configuration ||= ::Proteus::Configuration.new
   end
 
   def self.table_name_prefix
