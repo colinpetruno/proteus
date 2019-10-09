@@ -105,18 +105,21 @@
 
       <footer>
         <h4>Add New Associated Stylesheet</h4>
-        <%= render(
-          partial: "proteus/whitelabeled_domains/linked_stylesheet_property_form",
-          locals: {
-            property: whitelabeled_domain.properties.build(
-              type: "Proteus::LinkedStylesheetProperty"
-            ),
-            form_method: :post,
-            form_path: whitelabeled_domain_properties_path(
-              whitelabeled_domain
-            )
-          }
-        ) %>
+
+        <% if whitelabeled_domain.persisted? %>
+          <%= render(
+            partial: "proteus/whitelabeled_domains/linked_stylesheet_property_form",
+            locals: {
+              property: whitelabeled_domain.properties.build(
+                type: "Proteus::LinkedStylesheetProperty"
+              ),
+              form_method: :post,
+              form_path: whitelabeled_domain_properties_path(
+                whitelabeled_domain
+              )
+            }
+          ) %>
+        <% end %>
       </footer>
     </div>
 
@@ -151,16 +154,18 @@
 
       <footer>
         <h4>Add New Sass Variable</h4>
-        <%= render(
-          partial: "proteus/whitelabeled_domains/sass_property_form",
-          locals: {
-            property: whitelabeled_domain.sass_properties.build,
-            form_method: :post,
-            form_path: whitelabeled_domain_properties_path(
-              whitelabeled_domain
-            )
-          }
-        ) %>
+        <% if whitelabeled_domain.persisted? %>
+          <%= render(
+            partial: "proteus/whitelabeled_domains/sass_property_form",
+            locals: {
+              property: whitelabeled_domain.sass_properties.build,
+              form_method: :post,
+              form_path: whitelabeled_domain_properties_path(
+                whitelabeled_domain
+              )
+            }
+          ) %>
+        <% end %>
       </footer>
     </div>
 
@@ -198,16 +203,18 @@
 
       <footer>
         <h4>Add New App Setting</h4>
-        <%= render(
-          partial: "proteus/whitelabeled_domains/app_property_form",
-          locals: {
-            property: whitelabeled_domain.app_properties.build,
-            form_method: :post,
-            form_path: whitelabeled_domain_properties_path(
-              whitelabeled_domain
-            )
-          }
-        ) %>
+        <% if whitelabeled_domain.persisted? %>
+          <%= render(
+            partial: "proteus/whitelabeled_domains/app_property_form",
+            locals: {
+              property: whitelabeled_domain.app_properties.build,
+              form_method: :post,
+              form_path: whitelabeled_domain_properties_path(
+                whitelabeled_domain
+              )
+            }
+          ) %>
+        <% end %>
       </footer>
     </div>
   </div>
