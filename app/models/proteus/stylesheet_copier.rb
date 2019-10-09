@@ -33,7 +33,7 @@ module Proteus
       original_manifest_path = stylesheet_path(manifest_file_name)
 
       if original_manifest_path.blank?
-        raise ProteusError.new("Could not find original manifest to compile")
+        raise ::Proteus::Error.new("Could not find original manifest to compile")
       end
 
       new_filename = proteus_manifest_name_for(
