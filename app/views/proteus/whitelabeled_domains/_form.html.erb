@@ -34,7 +34,7 @@
               routes.
               named_routes.
               helper_names.
-              delete_if { |path| /.*_url$/.match?(path) },
+              delete_if { |path| /.*_url$/.match?(path) }.sort,
             selected: whitelabeled_domain.root_path,
           ),
           include_blank: true,
