@@ -1,5 +1,5 @@
 module Proteus
-  class PropertiesController < ApplicationController
+  class PropertiesController < ::Proteus::ApplicationController
     def create
       domain = WhitelabeledDomain.find(params[:whitelabeled_domain_id])
       @property = domain.properties.build(property_params)

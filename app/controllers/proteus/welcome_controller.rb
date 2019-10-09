@@ -1,5 +1,5 @@
 module Proteus
-  class WelcomeController < Proteus::ApplicationController
+  class WelcomeController < ::Proteus::ApplicationController
     def show
     end
   end

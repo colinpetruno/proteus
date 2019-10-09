@@ -1,5 +1,5 @@
 module Proteus
-  class WhitelabeledDomainsController < ApplicationController
+  class WhitelabeledDomainsController < ::Proteus::ApplicationController
     def edit
       @whitelabeled_domain = WhitelabeledDomain.find(params[:id])
     end
