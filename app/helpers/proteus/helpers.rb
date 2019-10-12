@@ -17,8 +17,6 @@ module Proteus
     end
 
     def proteus_stylesheet_link_tag(name, opts={})
-
-
       # TODO: we will need to inspect to ensure that the stylesheets and vars
       # aren't modified in development and if so copy them over. We should
       # probably hook into the compile_assets_fallback option or something

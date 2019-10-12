@@ -92,6 +92,14 @@ module Proteus
     def stylesheet_path(stylesheet_name)
       found = false
 
+      # check main stylesheet folder
+      manifest = find_manifest_in_path(
+        Rails.root.join("app", "assets", "stylesheets").to_s,
+        stylesheet_name
+      )
+
+      return manifest if manifest.present?
+
       for path in asset_paths do
         if found.blank?
           found = find_manifest_in_path(path, stylesheet_name)
@@ -102,7 +110,7 @@ module Proteus
     end
 
     def find_manifest_in_path(path, stylesheet_name)
-      files = Dir.glob("#{path}/**/*.{scss}")
+      files = Dir.glob("#{path}/*.{scss}")
       detected_files = files.grep(Regexp.new(stylesheet_name))
 
       if detected_files.present?
