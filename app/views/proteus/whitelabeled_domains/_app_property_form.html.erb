@@ -17,6 +17,14 @@
         <%= f.text_field :value, class: "form-control" %>
       </div>
 
+
+      <% if Proteus.configuration.image_storage_engine&.to_s&.downcase == "active_storage" %>
+        <div>
+          <%= f.label :asset %>
+          <%= f.file_field :asset, class: "form-control" %>
+        </div>
+      <% end %>
+
       <div>
         <%= f.hidden_field :type %>
         <%= f.submit nil, class: "btn btn-info" %>

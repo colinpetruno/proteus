@@ -23,6 +23,7 @@ module Proteus
       @property = domain.properties.find(params[:id])
 
       if @property.update(property_params)
+        StylesheetCopier.for(domain).copy
         redirect_to edit_whitelabeled_domain_path(domain)
       end
     end
@@ -30,7 +31,7 @@ module Proteus
     private
 
     def property_params
-      params.require(:property).permit(:id, :type, :key, :value)
+      params.require(:property).permit(:id, :type, :key, :value, :asset)
     end
   end
 end
