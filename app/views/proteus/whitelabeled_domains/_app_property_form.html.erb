@@ -20,6 +20,11 @@
 
       <% if Proteus.configuration.image_storage_engine&.to_s&.downcase == "active_storage" %>
         <div>
+          <% if property.asset.attached? %>
+            <span><%= property.asset.blob.filename %></span>
+          <% else %>
+            <span>No file attached...</span>
+          <% end %>
           <%= f.label :asset %>
           <%= f.file_field :asset, class: "form-control" %>
         </div>
