@@ -4,7 +4,12 @@ module Proteus
       var = proteus_variable_cache.find { |variable| variable.key == var_name }
 
       if var.present?
-        var.value
+        # return any attached object as it's value
+        if var.respond_to?(:asset) && var.asset.attached?
+          var.asset
+        else
+          var.value
+        end
       else
         default_val
       end
