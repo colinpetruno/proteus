@@ -26,13 +26,16 @@ module Proteus
       # aren't modified in development and if so copy them over. We should
       # probably hook into the compile_assets_fallback option or something
 
-      domain = WhitelabeledDomain.find_by(host: request.host)
+      puts "Checking for domain #{request.host.downcase.strip}"
+      domain = WhitelabeledDomain.find_by(host: request.host.downcase.strip)
 
       if domain.present?
+        puts "Domain found"
         StylesheetCopier.for(domain).copy
         whitelabel_stylesheet_name = "proteus_#{domain.slug}_#{name}"
         stylesheet_link_tag(whitelabel_stylesheet_name, opts)
       else
+        puts "Domain not found"
         stylesheet_link_tag(name, opts)
       end
       # this method eventually gets into
