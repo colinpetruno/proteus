@@ -27,7 +27,7 @@ module Proteus
       # probably hook into the compile_assets_fallback option or something
 
       puts "Checking for domain #{request.host.downcase.strip}"
-      domain = WhitelabeledDomain.find_by(host: request.host.downcase.strip)
+      domain = ::Proteus::WhitelabeledDomain.find_by(host: request.host.downcase.strip)
 
       if domain.present?
         puts "Domain found"
