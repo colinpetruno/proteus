@@ -9,8 +9,8 @@ module Proteus
     end
 
     def copy
+      puts "Iterating over each stylesheet"
       linked_stylesheets.each do |stylesheet_to_copy|
-        puts "Iterating over each stylesheet"
         puts "copying #{stylesheet_to_copy}"
         puts "enabled: #{stylesheet_to_copy.value}"
 
@@ -20,9 +20,6 @@ module Proteus
           puts "Disabled manifest for #{stylesheet_to_copy.key}"
         end
       end
-    end
-
-    def copy!
     end
 
     private
@@ -84,8 +81,13 @@ module Proteus
     end
 
     def proteus_manifest_name_for(original_path, manifest)
+      puts "Proteus manifest name for"
+      puts domain.slug
+      puts manifest
       # proteus_get_magnexus_application.scss
       new_filename = "proteus_#{domain.slug}_#{manifest}"
+
+      puts original_path.gsub(manifest, new_filename)
 
       original_path.gsub(manifest, new_filename)
     end
