@@ -19,10 +19,8 @@ module Proteus
       end
 
       proteus_domains.each do |local_domain|
-        puts "Beginning copier for domain #{local_domain.slug}"
         # Ensure latest manifest files before compilation
         StylesheetCopier.for(local_domain).copy
-        puts "End copier for domain #{local_domain.slug}"
 
         # Add the host to the whitelabeled host list for rails 6. The setting
         # is disabled when nil, so we will want to keep that blank if it is

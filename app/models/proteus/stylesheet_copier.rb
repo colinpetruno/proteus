@@ -9,11 +9,7 @@ module Proteus
     end
 
     def copy
-      puts "Iterating over each stylesheet"
       linked_stylesheets.each do |stylesheet_to_copy|
-        puts "copying #{stylesheet_to_copy}"
-        puts "enabled: #{stylesheet_to_copy.value}"
-
         if stylesheet_to_copy.value == "true"
           copy_manifest(stylesheet_to_copy.key)
         else
@@ -43,7 +39,6 @@ module Proteus
       # and compare the hash to the original manifest. This will also need
       # to be done for the variables and perhaps track it into the database?
 
-      puts "Creating file: #{new_filename}"
       File.open(new_filename, "w") do |fo|
         fo.puts "@import 'proteus_variables/#{domain.slug}.scss';";
 
@@ -86,7 +81,10 @@ module Proteus
       puts manifest
       # proteus_get_magnexus_application.scss
       new_filename = "proteus_#{domain.slug}_#{manifest}"
-
+# whitelabeldemo
+# devise.scss
+# /var/www/ligo/releases/20191104210358/app/assets/stylesheets/proteus_magnexus_proteus_whitelabeldemo_proteus_whitelabeldemo_devise.scss
+# Creating file: /var/www/ligo/releases/20191104210358/app/assets/stylesheets/proteus_magnexus_proteus_whitelabeldemo_proteus_whitelabeldemo_devise.scss
       puts original_path.gsub(manifest, new_filename)
 
       original_path.gsub(manifest, new_filename)
@@ -114,9 +112,14 @@ module Proteus
 
     def find_manifest_in_path(path, stylesheet_name)
       files = Dir.glob("#{path}/*.{scss}")
-      detected_files = files.grep(Regexp.new(stylesheet_name))
+
+      detected_files = files.grep(Regexp.new("\/#{stylesheet_name}$"))
 
       if detected_files.present?
+        if detected_files.length > 1
+          raise ::Proteus::Error.new("found more than 1 matching manifest.. aborting")
+        end
+
         return detected_files.first
       else
         return nil
