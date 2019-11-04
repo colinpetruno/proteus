@@ -13,12 +13,12 @@ module Proteus
 
     initializer "proteus_web.setup_hosts" do |app|
       if ActiveRecord::Base.connection.data_source_exists?("proteus_whitelabeled_domains")
-        domains = WhitelabeledDomain.all
+        proteus_domains = WhitelabeledDomain.all
       else
-        domains = []
+        proteus_domains = []
       end
 
-      domains.each do |local_domain|
+      proteus_domains.each do |local_domain|
         # Ensure latest manifest files before compilation
         StylesheetCopier.for(local_domain).copy
 
@@ -26,7 +26,7 @@ module Proteus
         # is disabled when nil, so we will want to keep that blank if it is
         # already blank
         if app.config.respond_to?(:hosts) && !app.config.hosts.nil?
-          app.config.hosts << domain.host
+          app.config.hosts << local_domain.host
         end
 
         # for each linked manifest file for this domain, we need to then go
@@ -34,7 +34,7 @@ module Proteus
         # list to prevent errors down the road
         local_domain.linked_stylesheet_properties.each do |property|
           if property.value == "true"
-            asset_name = "proteus_#{domain.slug}_#{property.key}"
+            asset_name = "proteus_#{local_domain.slug}_#{property.key}"
             app.config.assets.precompile << asset_name
           end
         end
