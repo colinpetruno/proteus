@@ -46,6 +46,7 @@ module Proteus
       # and compare the hash to the original manifest. This will also need
       # to be done for the variables and perhaps track it into the database?
 
+      puts "Creating file: #{new_filename}"
       File.open(new_filename, "w") do |fo|
         fo.puts "@import 'proteus_variables/#{domain.slug}.scss';";
 

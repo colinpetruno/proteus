@@ -29,8 +29,8 @@ module Proteus
       puts "Checking for domain #{request.host.downcase.strip}"
       domain = ::Proteus::WhitelabeledDomain.find_by(host: request.host.downcase.strip)
 
-      if domain.present?
-        puts "Domain found"
+      # need to check the app settings here for the precompile flag.
+      if domain.present? && !Rails.env.production?
         StylesheetCopier.for(domain).copy
         whitelabel_stylesheet_name = "proteus_#{domain.slug}_#{name}"
         stylesheet_link_tag(whitelabel_stylesheet_name, opts)

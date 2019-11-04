@@ -18,9 +18,9 @@ module Proteus
         domains = []
       end
 
-      domains.each do |domain|
+      domains.each do |local_domain|
         # Ensure latest manifest files before compilation
-        StylesheetCopier.for(domain).copy
+        StylesheetCopier.for(local_domain).copy
 
         # Add the host to the whitelabeled host list for rails 6. The setting
         # is disabled when nil, so we will want to keep that blank if it is
@@ -32,7 +32,7 @@ module Proteus
         # for each linked manifest file for this domain, we need to then go
         # and add the adjusted Proteus stylesheet name to the precompiled asset
         # list to prevent errors down the road
-        domain.linked_stylesheet_properties.each do |property|
+        local_domain.linked_stylesheet_properties.each do |property|
           if property.value == "true"
             asset_name = "proteus_#{domain.slug}_#{property.key}"
             app.config.assets.precompile << asset_name
